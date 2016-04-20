@@ -1,0 +1,88 @@
+comment.R 討論區
+problem_check.R 作答
+student_enrollment.R 註冊人數教育程度
+Video.R 課程進度
+video_check60.R 影片觀看次數人數
+
+R
+mongodb  
+
+install.packages("rmongodb")
+library(rmongodb)
+mongo <- mongo.create()
+mongo
+mongo.is.connected(mongo)
+
+
+mysql
+
+mysql -h 127.0.0.1 -u root -p edxapp <D:/edxapp.sql
+
+
+student_courseenrollment 學生註冊課程資料
+auth_userprofile  學生個人資料國籍,學歷(前置處理留下user_id,gender,year_of_birth,level_of_education,country)
+
+mongo
+
+回復討論區
+C:\Program Files\MongoDB\Server\3.2\bin>
+mongorestore --db cs_comments_service_de
+velopment  --collection contents  D:\contents.bson
+
+
+
+
+
+
+作答次數匯出csv
+C:\Program Files\MongoDB\Server\3.2\bin>mongoexport --db log --collection server
+_problem_check  -f username,host,event_source,context.user_id,context.course_id,
+time --csv --out D://server_problem_check.csv
+
+討論區匯出csv
+C:\Program Files\MongoDB\Server\3.2\bin>mongoexport --db cs_comments_service_dev
+elopment --collection contents -f  course_id,_type,author_id,created_at --csv --
+out D://contents.csv
+
+
+
+將作答log 匯入mongo
+
+C:\Program Files\MongoDB\Server\3.2\bin>mongoimport --db log --collection server
+_problem_check --file D:\server_problem_check.log
+
+
+
+
+use edxapp
+use modulestore
+
+
+ mongoexport --csv -d edxapp -c modulestore -q '{"_id.category": "course"}' -f _id.org,_id.course,_id.name,_id.category,metadata.display_name -o C:\123.csv
+
+ 
+email
+mysql會出CSV
+SELECT * FROM `student_courseenrollment` WHERE `course_id` LIKE 'FCUx/2015001/201511' ORDER BY `course_id` ASC INTO OUTFILE '/tmp/querydump.csv' ; 
+
+
+
+
+
+mongo
+搜尋
+{
+"_id.course" :"DemoX",
+"_id.category" :"course",			
+}
+
+mongoexport --db edxapp --query "{'_id.c
+ategory':'course'}" --collection  modulestore --csv --fields _id.org,_id.course,
+_id.name,_id.category,metadata.display_name,metadata.end,metadata.enrollment_start,metadata.start,metadata.enrollment_end --out C:\course_name.csv
+
+取得課程中文名稱
+C:\Program Files\MongoDB\Server\3.2\bin>
+mongoexport --db edxapp --query "{'_id.c
+ategory':'course'}" --collection  modulestore --csv --fields _id.org,_id.course,
+_id.name,_id.category,metadata.display_name,metadata.end,metadata.enrollment_start,metadata.start,metadata.enrollment_end --out C:\course_name.csv
+
