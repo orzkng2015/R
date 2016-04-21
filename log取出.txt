@@ -1,8 +1,4 @@
-comment.R 討論區
-problem_check.R 作答
-student_enrollment.R 註冊人數教育程度
-Video.R 課程進度
-video_check60.R 影片觀看次數人數
+
 
 R
 mongodb  
@@ -14,24 +10,32 @@ mongo
 mongo.is.connected(mongo)
 
 
-mysql
+課程註冊+使用者資料+國籍
 
+edxapp匯入mysql
+auth_user
+auth_userprofile
+student_courseenrollment
 mysql -h 127.0.0.1 -u root -p edxapp <D:/edxapp.sql
 
 
-student_courseenrollment 學生註冊課程資料
-auth_userprofile  學生個人資料國籍,學歷(前置處理留下user_id,gender,year_of_birth,level_of_education,country)
 
 mongo
-
-回復討論區
+匯入討論區
 C:\Program Files\MongoDB\Server\3.2\bin>
 mongorestore --db cs_comments_service_de
 velopment  --collection contents  D:\contents.bson
 
 
+討論區匯出csv
+C:\Program Files\MongoDB\Server\3.2\bin>mongoexport --db cs_comments_service_dev
+elopment --collection contents -f  course_id,_type,author_id,created_at --csv --
+out D://contents.csv
 
+將作答log 匯入mongo
 
+C:\Program Files\MongoDB\Server\3.2\bin>mongoimport --db log --collection server
+_problem_check --file D:\server_problem_check.log
 
 
 作答次數匯出csv
@@ -39,17 +43,11 @@ C:\Program Files\MongoDB\Server\3.2\bin>mongoexport --db log --collection server
 _problem_check  -f username,host,event_source,context.user_id,context.course_id,
 time --csv --out D://server_problem_check.csv
 
-討論區匯出csv
-C:\Program Files\MongoDB\Server\3.2\bin>mongoexport --db cs_comments_service_dev
-elopment --collection contents -f  course_id,_type,author_id,created_at --csv --
-out D://contents.csv
 
 
 
-將作答log 匯入mongo
 
-C:\Program Files\MongoDB\Server\3.2\bin>mongoimport --db log --collection server
-_problem_check --file D:\server_problem_check.log
+
 
 
 
