@@ -277,3 +277,46 @@ dbDisconnect(connect_write)
 dbDisconnect(connection)
 
 }
+
+user_watch <- function(db_account,db_password,db_edxapp_name,write_db)
+{
+  
+  library(DBI)  
+  library(RMySQL)
+  
+  
+  connection <- dbConnect(MySQL(), user=db_account, password=db_password, dbname=db_edxapp_name, host="localhost") ##connect mysql
+  connect_write <- dbConnect(MySQL(), user=db_account, password=db_password, dbname=write_db, host="localhost")
+  
+  auth_userprofile <- dbGetQuery(connection,"SELECT id,email FROM `auth_user`")
+  colnames(auth_userprofile)[1] <- 'user_id'
+  
+  video_freq <- dbGetQuery(connect_write,"SELECT * FROM `video_freq`")
+  video_freq  <- video_freq[, c(1,2,3)] 
+  course <- video_freq[, c(2)]
+  course <-unique(course )
+  x<-length(course)
+  for (i in 1: x)
+  {
+    print(course[i])
+    mysql_course <- video_freq[video_freq$course_id == course[i] ,] 
+    
+    
+    mysql_course <- as.data.frame(table(mysql_course))
+    mysql_course <- mysql_course[mysql_course$Freq > 0,]
+    
+    
+    mysql_course<-merge(auth_userprofile,mysql_course, by = 'user_id')
+    
+    
+    dbWriteTable(connect_write, "user_watch",  mysql_course ,row.names=FALSE,append=TRUE)
+  }
+  
+  
+  
+  
+  dbDisconnect(connect_write)
+  dbDisconnect(connection) 
+  
+}
+

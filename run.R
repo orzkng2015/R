@@ -49,9 +49,15 @@ contents(db_account,db_password,db_edxapp_name,write_db,contents_csv)
 ###
 
 
+
 ###course_rogress (need video_check60_r finish)
 
 #course_Progress(db_account,db_password,db_edxapp_name,write_db,video_r_address,play_video_SpentTime_csv)
 
 ###
+
+###
+user_watch(db_account,db_password,db_edxapp_name,write_db)
+###
+
 
