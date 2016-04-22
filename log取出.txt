@@ -1,12 +1,12 @@
-»İ­n¦w¸Ë¥]
+ï»¿éœ€è¦å®‰è£åŒ…
 install.packages("googlesheets")
 install.packages("rmongodb")
 R
 
 
-½Òµ{µù¥U+¨Ï¥ÎªÌ¸ê®Æ+°êÄy
+èª²ç¨‹è¨»å†Š+ä½¿ç”¨è€…è³‡æ–™+åœ‹ç±
 
-edxapp¶×¤Jmysql
+edxappåŒ¯å…¥mysql
 auth_user
 auth_userprofile
 student_courseenrollment
@@ -15,24 +15,24 @@ mysql -h 127.0.0.1 -u root -p edxapp <D:/edxapp.sql
 
 
 mongo
-¶×¤J°Q½×°Ï
+åŒ¯å…¥è¨è«–å€
 C:\Program Files\MongoDB\Server\3.2\bin>
 mongorestore --db cs_comments_service_de
 velopment  --collection contents  D:\contents.bson
 
 
-°Q½×°Ï¶×¥Xcsv
+è¨è«–å€åŒ¯å‡ºcsv
 C:\Program Files\MongoDB\Server\3.2\bin>mongoexport --db cs_comments_service_dev
 elopment --collection contents -f  course_id,_type,author_id,created_at --csv --
 out D://contents.csv
 
-±N§@µªlog ¶×¤Jmongo
+å°‡ä½œç­”log åŒ¯å…¥mongo
 
 C:\Program Files\MongoDB\Server\3.2\bin>mongoimport --db log --collection server
 _problem_check --file D:\server_problem_check.log
 
 
-§@µª¦¸¼Æ¶×¥Xcsv
+ä½œç­”æ¬¡æ•¸åŒ¯å‡ºcsv
 C:\Program Files\MongoDB\Server\3.2\bin>mongoexport --db log --collection server
 _problem_check  -f username,host,event_source,context.user_id,context.course_id,
 time --csv --out D://server_problem_check.csv
@@ -54,7 +54,7 @@ use modulestore
 
  
 email
-mysql·|¥XCSV
+mysqlæœƒå‡ºCSV
 SELECT * FROM `student_courseenrollment` WHERE `course_id` LIKE 'FCUx/2015001/201511' ORDER BY `course_id` ASC INTO OUTFILE '/tmp/querydump.csv' ; 
 
 
@@ -62,7 +62,7 @@ SELECT * FROM `student_courseenrollment` WHERE `course_id` LIKE 'FCUx/2015001/20
 
 
 mongo
-·j´M
+æœå°‹
 {
 "_id.course" :"DemoX",
 "_id.category" :"course",			
@@ -72,7 +72,7 @@ mongoexport --db edxapp --query "{'_id.c
 ategory':'course'}" --collection  modulestore --csv --fields _id.org,_id.course,
 _id.name,_id.category,metadata.display_name,metadata.end,metadata.enrollment_start,metadata.start,metadata.enrollment_end --out C:\course_name.csv
 
-¨ú±o½Òµ{¤¤¤å¦WºÙ
+å–å¾—èª²ç¨‹ä¸­æ–‡åç¨±
 C:\Program Files\MongoDB\Server\3.2\bin>
 mongoexport --db edxapp --query "{'_id.c
 ategory':'course'}" --collection  modulestore --csv --fields _id.org,_id.course,
