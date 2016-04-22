@@ -203,47 +203,33 @@ problem <- function(db_account,db_password,db_edxapp_name,write_db,server_proble
   
 {
 
-library(DBI)  
-library(RMySQL)  
-connection <- dbConnect(MySQL(), user=db_account, password=db_password, dbname=db_edxapp_name, host="localhost")
-connect_write <- dbConnect(MySQL(), user=db_account, password=db_password, dbname=write_db, host="localhost")
-
-auth_userprofile <-dbGetQuery(connection,"SELECT user_id ,year_of_birth,level_of_education,country FROM `auth_userprofile`")
-
-
-data<-read.table(server_problem_check_csv, header=TRUE, sep=",") #server_problem_check.csv
-colnames(data)[1] <- 'username'
-colnames(data)[2] <- 'host'
-colnames(data)[3] <- 'type'
-colnames(data)[4] <- 'user_id'
-colnames(data)[5] <- 'course_id'
-colnames(data)[6] <- 'time'
-data <- data[data$host == "courses.openedu.tw" ,] #host=openedu
-data2 <- data[, c(5,4,6)] 
-data2$time <- as.Date(data2$time)
-data2 <-subset(data2, time < as.Date("2016-2-17") )
-
-data3<-read.table("D:/log/code/sum/online/csv/server_problem_check.csv", header=TRUE, sep=",")
-colnames(data3)[1] <- 'username'
-colnames(data3)[2] <- 'host'
-colnames(data3)[3] <- 'type'
-colnames(data3)[4] <- 'user_id'
-colnames(data3)[5] <- 'course_id'
-colnames(data3)[6] <- 'time'
-data3 <- data3[data3$host == "courses.openedu.tw" ,] #host=openedu
-data3 <- data3[, c(5,4,6)] 
-data3$time <- as.Date(data3$time)
-
-a<-rbind(data2,data3)
-a <-merge(a,auth_userprofile, by = 'user_id')
-a <- a[, c(2,1,6,3)] 
-
-
-dbWriteTable(connect_write, "problem", a, overwrite=T,row.names=FALSE) #insert time_sum
-
-dbDisconnect(connect_write)
-dbDisconnect(connection) 
-
+  library(DBI)  
+  library(RMySQL)  
+  connection <- dbConnect(MySQL(), user=db_account, password=db_password, dbname=db_edxapp_name, host="localhost")
+  connect_write <- dbConnect(MySQL(), user=db_account, password=db_password, dbname=write_db, host="localhost")
+  
+  auth_userprofile <-dbGetQuery(connection,"SELECT user_id ,year_of_birth,level_of_education,country FROM `auth_userprofile`")
+  
+  data3<-read.table("D:/log/code/sum/online/csv/server_problem_check.csv", header=TRUE, sep=",")
+  colnames(data3)[1] <- 'username'
+  colnames(data3)[2] <- 'host'
+  colnames(data3)[3] <- 'type'
+  colnames(data3)[4] <- 'user_id'
+  colnames(data3)[5] <- 'course_id'
+  colnames(data3)[6] <- 'time'
+  data3 <- data3[data3$host == "courses.openedu.tw" ,] #host=openedu
+  data3 <- data3[, c(5,4,6)] 
+  data3$time <- as.Date(data3$time)
+  
+  
+  a <-merge(data3,auth_userprofile, by = 'user_id')
+  a <- a[, c(2,1,6,3)] 
+  
+  
+  dbWriteTable(connect_write, "problem", a, overwrite=T,row.names=FALSE) #insert time_sum
+  
+  dbDisconnect(connect_write)
+  dbDisconnect(connection) 
 }
 
 ### course comment freq
