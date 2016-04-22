@@ -1,13 +1,7 @@
-
-
-R
-mongodb  
-
+需要安裝包
+install.packages("googlesheets")
 install.packages("rmongodb")
-library(rmongodb)
-mongo <- mongo.create()
-mongo
-mongo.is.connected(mongo)
+R
 
 
 課程註冊+使用者資料+國籍

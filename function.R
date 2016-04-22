@@ -147,7 +147,7 @@ course_Progress <- function(db_account,db_password,db_edxapp_name,write_db,video
 
 
 
-##fincourse
+### fincourse
 fin <- function(db_account,db_password,db_edxapp_name,write_db)
   
 {
@@ -198,7 +198,7 @@ for (i in 1: x)
 
 }
 
-#problem
+### course problem freq
 problem <- function(db_account,db_password,db_edxapp_name,write_db,server_problem_check_csv)
   
 {
@@ -246,7 +246,7 @@ dbDisconnect(connection)
 
 }
 
-
+### course comment freq
 contents <- function(db_account,db_password,db_edxapp_name,write_db,contents_csv)
 
 {
@@ -278,6 +278,8 @@ dbDisconnect(connection)
 
 }
 
+
+### sutdnet watch video_code freq
 user_watch <- function(db_account,db_password,db_edxapp_name,write_db)
 {
   
@@ -320,3 +322,29 @@ user_watch <- function(db_account,db_password,db_edxapp_name,write_db)
   
 }
 
+###write_finish_course_student
+write_pass_student_fin_course <- function(db_account,db_password,db_edxapp_name,write_db,pass_student_url,fin_course_url)
+  
+{
+  library(RMySQL)  
+  library(DBI)  
+  
+  connect_write <- dbConnect(MySQL(), user=db_account, password=db_password, dbname=write_db, host="localhost")
+  
+  require(RCurl)
+  pass_student_data <- getURL(pass_student_url, ssl.verifypeer=FALSE)
+  pass_student <- read.csv(textConnection(pass_student_data))
+  
+  fin_course_data <- getURL(fin_course_url, ssl.verifypeer=FALSE)
+  fin_course <- read.csv(textConnection(fin_course_data))
+  
+  
+  
+  
+  
+  dbWriteTable(connect_write,"pass_student", pass_student, overwrite=T,row.names=FALSE)  ##insert mysql pass_student
+  dbWriteTable(connect_write,"fin_course", fin_course, overwrite=T,row.names=FALSE)  ##insert mysql pass_student
+  
+  
+  dbDisconnect(connect_write)
+}
