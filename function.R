@@ -209,6 +209,8 @@ problem <- function(db_account,db_password,db_edxapp_name,write_db,server_proble
   connect_write <- dbConnect(MySQL(), user=db_account, password=db_password, dbname=write_db, host="localhost")
   
   auth_userprofile <-dbGetQuery(connection,"SELECT user_id ,year_of_birth,level_of_education,country FROM `auth_userprofile`")
+  auth_user <- dbGetQuery(connection,"SELECT id,email FROM `auth_user`")
+  colnames(auth_user)[1] <- 'user_id'
   
   data3<-read.table("D:/log/code/sum/online/csv/server_problem_check.csv", header=TRUE, sep=",")
   colnames(data3)[1] <- 'username'
@@ -225,8 +227,16 @@ problem <- function(db_account,db_password,db_edxapp_name,write_db,server_proble
   a <-merge(data3,auth_userprofile, by = 'user_id')
   a <- a[, c(2,1,6,3)] 
   
+  a3 <- as.data.frame(table(a$course_id,a$user_id))
+  a3  <- a3[a3$Freq > 0,]
+  colnames(a3)[1] <- 'course_id'
+  colnames(a3)[2] <- 'user_id'
+  a3 <-merge(a3,auth_user, by = 'user_id')
+  a3 <- a3[, c(2,1,4,3)] 
   
   dbWriteTable(connect_write, "problem", a, overwrite=T,row.names=FALSE) #insert time_sum
+  dbWriteTable(connect_write, "user_problem", a3, overwrite=T,row.names=FALSE) #insert time_sum
+  
   
   dbDisconnect(connect_write)
   dbDisconnect(connection) 
