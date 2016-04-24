@@ -1,7 +1,21 @@
 ﻿需要安裝包
+
 install.packages("googlesheets")
+
+install.packages("rjson") 
+install.packages("RCurl")
 install.packages("rmongodb")
-R
+在安裝RMysql之前
+需安裝 R tools
+https://cran.r-project.org/bin/windows/Rtools/(R tools)
+
+安裝完畢編輯 Rprofile.site
+C:\Program Files\R\R-3.2.5\etc\Rprofile.site
+新增以下指令
+MYSQL_HOME=’C:/Program Files/MySQL/MysSQL Server 5.7’
+解壓縮 MysSQL Server 5.7.rar到以上目錄
+
+install.packages('RMySQL')
 
 
 課程註冊+使用者資料+國籍
