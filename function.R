@@ -212,7 +212,7 @@ problem <- function(db_account,db_password,db_edxapp_name,write_db,server_proble
   auth_user <- dbGetQuery(connection,"SELECT id,email FROM `auth_user`")
   colnames(auth_user)[1] <- 'user_id'
   
-  data3<-read.table("D:/log/code/sum/online/csv/server_problem_check.csv", header=TRUE, sep=",")
+  data3<-read.table(server_problem_check_csv, header=TRUE, sep=",")
   colnames(data3)[1] <- 'username'
   colnames(data3)[2] <- 'host'
   colnames(data3)[3] <- 'type'
