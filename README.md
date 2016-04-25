@@ -24,3 +24,8 @@ C:\Program Files\MongoDB\Server\3.2\bin>mongorestore --db cs_comments_service_de
 
 匯出 <br>
 C:\Program Files\MongoDB\Server\3.2\bin>mongoexport --db cs_comments_service_development --collection contents -f  course_id,_type,author_id,created_at --csv --out D://contents.csv <br>
+
+
+#產生使用者觀看影片時間 play_video_SpentTime.csv
+INPUT_PATH 填入 LogFilter_host_user_id 路徑
+執行 EvtSpentTime.R 跑完即可產生
