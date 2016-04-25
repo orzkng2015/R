@@ -1,8 +1,8 @@
 # 環境需求
 R 3.2.x以上版本 <br>
 RStudio <br>
-Mysql  <br> <br>
-MongoDb <br> <br>
+Mysql  <br> 
+MongoDb <br> 
 在Console 輸入以下指令進行安裝 <br>
 install.packages("googlesheets") <br>
 install.packages("rjson") <br>
