@@ -1,4 +1,8 @@
-# 前置需求
+# 環境需求
+R 3.2.x以上版本 <br>
+RStudio
+Mysql  <br> <br>
+MongoDb <br> <br>
 在Console 輸入以下指令進行安裝 <br>
 install.packages("googlesheets") <br>
 install.packages("rjson") <br>
@@ -19,4 +23,4 @@ install.packages('RMySQL')<br>
 C:\Program Files\MongoDB\Server\3.2\bin>mongorestore --db cs_comments_service_development  --collection contents  D:\contents.bson <br>
 
 匯出 <br>
-C:\Program Files\MongoDB\Server\3.2\bin>mongoexport --db cs_comments_service_development --collection contents -f  course_id,_type,author_id,created_at --csv --out D://contents.csv
+C:\Program Files\MongoDB\Server\3.2\bin>mongoexport --db cs_comments_service_development --collection contents -f  course_id,_type,author_id,created_at --csv --out D://contents.csv <br>
