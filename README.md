@@ -38,12 +38,13 @@ time --csv --out D://server_problem_check.csv
 
 #產生使用者觀看影片時間 play_video_SpentTime.csv
 INPUT_PATH 填入 LogFilter_host_user_id 路徑
-執行 EvtSpentTime.R 跑完即可產生
+執行 EvtSpentTime.R 跑完即可產生play_video_SpentTime.csv
 
+#運行及設定
 新增資料庫
 設定run.R
 內的相關參數設鄧
-
+![](https://github.com/orzkng2015/R/blob/master/%E6%9C%AA%E5%91%BD%E5%90%8D.png)
 #php
 執行run.R 跑完之後<br>
 安裝[WAMPSERVER](http://www.wampserver.com/en/)<br>
