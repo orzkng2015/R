@@ -15,6 +15,7 @@ install.packages("rmongodb") <br>
 新增以下指令<br>
 MYSQL_HOME=’C:/Program Files/MySQL/MysSQL Server 5.7’<br>
 解壓縮 MysSQL Server 5.7.rar到以上目錄<br>
+
 install.packages('RMySQL')<br>
 
 # Mongo Server<br>
@@ -38,3 +39,15 @@ time --csv --out D://server_problem_check.csv
 #產生使用者觀看影片時間 play_video_SpentTime.csv
 INPUT_PATH 填入 LogFilter_host_user_id 路徑
 執行 EvtSpentTime.R 跑完即可產生
+
+新增資料庫
+設定run.R
+內的相關參數設鄧
+
+#php
+執行run.R 跑完之後<br>
+安裝[WAMPSERVER](http://www.wampserver.com/en/)<br>
+安裝完畢<br>
+解壓time_sum.rar<br>
+設定/config/config.php 連結資料庫
+
