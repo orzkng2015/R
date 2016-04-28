@@ -19,6 +19,9 @@ MYSQL_HOME=’C:/Program Files/MySQL/MysSQL Server 5.7’<br>
 install.packages('RMySQL')<br>
 
 # Mongo Server<br>
+
+啟動MongoDB C:\Program Files\MongoDB\Server\3.2\bin>mongod.exe <br>
+
 討論區 匯入匯出CSV<br>
 匯入 <br>
 C:\Program Files\MongoDB\Server\3.2\bin>mongorestore --db cs_comments_service_development  --collection contents  D:\contents.bson <br>
