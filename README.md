@@ -46,6 +46,6 @@ INPUT_PATH 填入 LogFilter_host_user_id 路徑
 執行run.R 跑完之後<br>
 都執行完之後<br>
 解壓time_sum.rar<br>
-設定/config/config.php 連結資料庫<br>
+設定/config/config.php 連結資料庫寫入的資料庫名稱並設定Mysql 帳號密碼<br>
 開啟瀏覽器進入到http://localhost/time_sum<br>
 
