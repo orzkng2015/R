@@ -20,6 +20,9 @@ MYSQL_HOME=’C:/Program Files/MySQL/MysSQL Server 5.7’<br>
 
 install.packages('RMySQL')<br>
 
+#原始資料前置處理
+解壓EdXLogParsing.rar 內有說明檔<br>
+
 # Mongo Server<br>
 
 啟動MongoDB C:\Program Files\MongoDB\Server\3.2\bin>mongod.exe <br>
