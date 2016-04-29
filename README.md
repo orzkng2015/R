@@ -4,6 +4,7 @@ RStudio <br>
 Mysql  <br> 
 JAVA <br> 
 MongoDb <br> 
+安裝[WAMPSERVER](http://www.wampserver.com/en/)<br>
 在Console 輸入以下指令進行安裝 <br>
 install.packages("googlesheets") <br>
 install.packages("rjson") <br>
@@ -43,8 +44,8 @@ INPUT_PATH 填入 LogFilter_host_user_id 路徑
 ![](https://github.com/orzkng2015/R/blob/master/%E6%9C%AA%E5%91%BD%E5%90%8D.png)
 #php
 執行run.R 跑完之後<br>
-安裝[WAMPSERVER](http://www.wampserver.com/en/)<br>
-安裝完畢<br>
+都執行完之後<br>
 解壓time_sum.rar<br>
-設定/config/config.php 連結資料庫
+設定/config/config.php 連結資料庫<br>
+開啟瀏覽器進入到http://localhost/time_sum<br>
 
